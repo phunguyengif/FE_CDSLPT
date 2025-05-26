@@ -172,6 +172,7 @@ public class HomeForm extends javax.swing.JFrame {
     }
 
     private void resetFormDiem() {
+        txtDiemGradeID.setText("");
         txtTenSVDiem.setText("");
         txtMaSVDiem.setText("");
         txtMidterm.setText("");
@@ -198,7 +199,7 @@ public class HomeForm extends javax.swing.JFrame {
     }
 
     private void initTableDiem() {
-        String[] header = new String[]{"StudentID", "Full Name", "Midterm Score", "Final Score", "Attendance Score"};
+        String[] header = new String[]{"GradeID","StudentID", "Full Name", "Midterm Score", "Final Score", "Attendance Score"};
         tblModelDiem.setColumnIdentifiers(header);
         tblDiem.setModel(tblModelDiem);
     }
@@ -259,6 +260,7 @@ public class HomeForm extends javax.swing.JFrame {
             // Thêm dữ liệu mới vào bảng
             for (Diem diem : lstDiem) {
                 tableModel.addRow(new Object[]{
+                    diem.getGradeID(),
                     diem.getStudentID(),
                     diem.getFullName(),
                     diem.getMidtermScore(),
@@ -1331,11 +1333,12 @@ public class HomeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = tblDiem.getSelectedRow();
         if (row >= 0) {
-            txtMaSVDiem.setText(tblDiem.getValueAt(row, 0).toString());
-            txtTenSVDiem.setText(tblDiem.getValueAt(row, 1).toString());
-            txtMidterm.setText(tblDiem.getValueAt(row, 2).toString());
-            txtFinal.setText(tblDiem.getValueAt(row, 3).toString());
-            txtAttendance.setText(tblDiem.getValueAt(row, 4).toString());
+            txtDiemGradeID.setText(tblDiem.getValueAt(row, 0).toString());
+            txtMaSVDiem.setText(tblDiem.getValueAt(row, 1).toString());
+            txtTenSVDiem.setText(tblDiem.getValueAt(row, 2).toString());
+            txtMidterm.setText(tblDiem.getValueAt(row, 3).toString());
+            txtFinal.setText(tblDiem.getValueAt(row, 4).toString());
+            txtAttendance.setText(tblDiem.getValueAt(row, 5).toString());
             btnMHCapNhat.setEnabled(true);
             btnMHXoa.setEnabled(true);
         }
@@ -1345,6 +1348,7 @@ public class HomeForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Diem diem = new Diem();
+            diem.setGradeID(Integer.parseInt(txtDiemGradeID.getText()));
             diem.setStudentID(txtMaSVDiem.getText());
             diem.setFullName(txtTenSVDiem.getText());
             diem.setClassID((String) cbxLopHoc.getSelectedItem());

@@ -24,7 +24,7 @@ public class DangKyDAO {
     // Thêm đăng ký mới (student đăng ký lớp)
     public boolean addDangKy(DangKy dk) throws SQLException {
         String query = "INSERT INTO DangKy (StudentID, ClassID) VALUES (?, ?)";
-        try (Connection conn = DatabaseConnectionManager.getConnection(branch); PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (Connection conn = DatabaseConnectionManager.getConnection("central"); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, dk.getStudentID());
             stmt.setString(2, dk.getClassID());
             return stmt.executeUpdate() > 0;
@@ -34,7 +34,7 @@ public class DangKyDAO {
     // Xóa đăng ký (student hủy đăng ký lớp)
     public boolean deleteDangKy(String studentID, String classID) throws SQLException {
         String query = "DELETE FROM DangKy WHERE StudentID = ? AND ClassID = ?";
-        try (Connection conn = DatabaseConnectionManager.getConnection(branch); PreparedStatement stmt = conn.prepareStatement(query)) {
+        try (Connection conn = DatabaseConnectionManager.getConnection("central"); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, studentID);
             stmt.setString(2, classID);
             return stmt.executeUpdate() > 0;

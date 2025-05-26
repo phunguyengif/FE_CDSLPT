@@ -9,6 +9,7 @@ package com.mycompany.model;
  * @author ntphu
  */
 public class Diem {
+    private int GradeID;
     private String StudentID;
     private String FullName;
     private String ClassID;
@@ -22,7 +23,8 @@ public class Diem {
     public Diem(String ClassID) {
         this.ClassID = ClassID;
     }
-    public Diem(String StudentID, String ClassID, String FullName, float MidtermScore, float FinalScore, float AttendanceScore) {
+    public Diem(int GradeID, String StudentID, String ClassID, String FullName, float MidtermScore, float FinalScore, float AttendanceScore) {
+        this.GradeID = GradeID;
         this.StudentID = StudentID;
         this.FullName = FullName;
         this.ClassID = ClassID;
@@ -30,6 +32,15 @@ public class Diem {
         this.FinalScore = FinalScore;
         this.AttendanceScore = AttendanceScore;
     }
+
+    public int getGradeID() {
+        return GradeID;
+    }
+
+    public void setGradeID(int GradeID) {
+        this.GradeID = GradeID;
+    }
+    
 
     public String getStudentID() {
         return StudentID;

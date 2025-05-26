@@ -31,6 +31,7 @@ public class DiemDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Diem diem = new Diem();
+                    diem.setGradeID(rs.getInt("GradeID"));
                     diem.setStudentID(rs.getString("StudentID"));
                     diem.setFullName(rs.getString("FullName"));
                     diem.setClassID(rs.getString("ClassID"));
@@ -62,7 +63,7 @@ public class DiemDAO {
 
     // Sửa điểm
     public boolean updateDiem(Diem diem) throws Exception {
-        String query = "UPDATE Diem SET FullName = ?, ClassID = ?, MidtermScore = ?, FinalScore = ?, AttendanceScore = ? WHERE StudentID = ?";
+        String query = "UPDATE Diem SET FullName = ?, ClassID = ?, MidtermScore = ?, FinalScore = ?, AttendanceScore = ?, StudentID = ? WHERE GradeID = ?";
         try (Connection conn = DatabaseConnectionManager.getConnection("central"); PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setString(1, diem.getFullName());
@@ -71,16 +72,7 @@ public class DiemDAO {
             stmt.setFloat(4, diem.getFinalScore());
             stmt.setFloat(5, diem.getAttendanceScore());
             stmt.setString(6, diem.getStudentID());
-
-//            System.out.println("Executing SQL: " + query);
-//            System.out.println("With Parameters: "
-//                    + "FullName=" + diem.getFullName()
-//                    + ", ClassID=" + diem.getClassID()
-//                    + ", MidtermScore=" + diem.getMidtermScore()
-//                    + ", FinalScore=" + diem.getFinalScore()
-//                    + ", AttendanceScore=" + diem.getAttendanceScore()
-//                    + ", StudentID=" + diem.getStudentID());
-
+            stmt.setInt(7, diem.getGradeID());
             // Thực thi câu lệnh
             int rowsUpdated = stmt.executeUpdate();
 
