@@ -46,42 +46,78 @@ pom.xml
 1. Clone dự án https://github.com/phunguyengif/FE_CDSLPT.git
 2. Cài đặt database:
    Tạo 3 cơ sở dữ liệu: Trung tâm, Chi nhánh miền Nam, Chi nhánh miền Bắc
+
    clone script cho sơ sở trung tâm: https://github.com/phunguyengif/CSDLPT_QLTH.git. Và tạo cơ sở dữ liệu
+
    Tiến hành phân mảnh:
+
    Bước 1: Chuẩn bị môi trường
+
       Kiểm tra quyền truy cập:
-       SQL Server Agent phải được kích hoạt trên cả Publisher và Subscriber.
+
+         SQL Server Agent phải được kích hoạt trên cả Publisher và Subscriber.
+
       Xác định Publisher và Subscriber:
-       Publisher: Máy chủ chứa dữ liệu gốc sẽ được nhân bản.
-       Subscriber: Máy chủ nhận dữ liệu từ Publisher.
+
+         Publisher: Máy chủ chứa dữ liệu gốc sẽ được nhân bản.
+
+         Subscriber: Máy chủ nhận dữ liệu từ Publisher.
+
       Cấu hình cơ sở dữ liệu:
-       Xác định các bảng hoặc dữ liệu cần phân mảnh.
-       Đảm bảo mỗi bảng có một khóa chính (Primary Key).
+
+         Xác định các bảng hoặc dữ liệu cần phân mảnh.
+
+         Đảm bảo mỗi bảng có một khóa chính (Primary Key).
+
    Bước 2: Cấu hình Publisher (Máy chủ xuất bản)
+
       Thiết lập Distributor:
-       Trong SQL Server Management Studio (SSMS):
-       Kết nối đến máy chủ Publisher
-       Chuột phải vào Replication → Configure Distribution.
-       Làm theo hướng dẫn để cấu hình Distributor (có thể trên cùng máy với Publisher).
+
+         Trong SQL Server Management Studio (SSMS):
+
+         Kết nối đến máy chủ Publisher
+
+         Chuột phải vào Replication → Configure Distribution.
+
+         Làm theo hướng dẫn để cấu hình Distributor (có thể trên cùng máy với Publisher).
+
       Tạo Publication:
-       Chuột phải vào Local Publications → New Publication.
-       Chọn cơ sở dữ liệu để xuất bản.
+
+         Chuột phải vào Local Publications → New Publication.
+
+         Chọn cơ sở dữ liệu để xuất bản.
+
        Chọn loại replication là Merge Replication.
-        Chọn các bảng hoặc đối tượng cần xuất bản: : ![alt text](<Images/image.pngScreenshot 2025-05-10 220943.png>)
-        Thiết lập các thuộc tính khác (như lịch trình đồng bộ).
+
+         Chọn các bảng hoặc đối tượng cần xuất bản: : ![alt text](<Images/image.pngScreenshot 2025-05-10 220943.png>)
+
+         Thiết lập các thuộc tính khác (như lịch trình đồng bộ).
+
       Tạo Snapshot:
-       Sau khi tạo Publication, SQL Server sẽ tạo một bản Snapshot để khởi tạo cho các Subscriber.
-       Chuột phải vào Publication → View Snapshot Agent Status để đảm bảo quá trình Snapshot thành công.
+
+         Sau khi tạo Publication, SQL Server sẽ tạo một bản Snapshot để khởi tạo cho các Subscriber.
+
+         Chuột phải vào Publication → View Snapshot Agent Status để đảm bảo quá trình Snapshot thành công.
+
    Bước 3: Cấu hình Subscriber (Máy chủ nhận bản sao)
+
       Thêm Subscriber:
-       Chuột phải vào Local Subscriptions → New Subscriptions.
-       Chọn Publication vừa tạo.
-       Chọn máy chủ Subscriber và cơ sở dữ liệu tương ứng: ![alt text](Images/image.png).
-       Định cấu hình lịch trình đồng bộ (Continuous hoặc On-Demand).
+
+         Chuột phải vào Local Subscriptions → New Subscriptions.
+
+         Chọn Publication vừa tạo.
+
+         Chọn máy chủ Subscriber và cơ sở dữ liệu tương ứng: ![alt text](Images/image.png).
+
+         Định cấu hình lịch trình đồng bộ (Continuous hoặc On-Demand).
+
 
    Kích hoạt Subscription:
+
       Sau khi thiết lập, SQL Server sẽ tự động đồng bộ dữ liệu giữa Publisher và Subscriber theo lịch trình
+
    Tạo Publications và Subscriptions 
+   
 3. Tải NetBean https://netbeans.apache.org/front/main/download/nb22/ tải file Apache-NetBeans-22-bin-windows-x64.exe
 4. Tải các phụ thuộc:
    Jdk 22: 	https://download.oracle.com/java/22/archive/jdk-22.0.2_windows-x64_bin.exe (sha256)
