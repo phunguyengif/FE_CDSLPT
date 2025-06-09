@@ -89,8 +89,8 @@ pom.xml
 
        Chọn loại replication là Merge Replication.
 
-         Chọn các bảng hoặc đối tượng cần xuất bản: : ![alt text](<Images/image.pngScreenshot 2025-05-10 220943.png>)
-
+         Chọn các bảng hoặc đối tượng cần xuất bản:
+      ![alt text](<Images/image1.png>)
          Thiết lập các thuộc tính khác (như lịch trình đồng bộ).
 
       Tạo Snapshot:
@@ -107,8 +107,8 @@ pom.xml
 
          Chọn Publication vừa tạo.
 
-         Chọn máy chủ Subscriber và cơ sở dữ liệu tương ứng: ![alt text](Images/image.png).
-
+         Chọn máy chủ Subscriber và cơ sở dữ liệu tương ứng: 
+      ![alt text](Images/image.png).
          Định cấu hình lịch trình đồng bộ (Continuous hoặc On-Demand).
 
 
@@ -117,7 +117,7 @@ pom.xml
       Sau khi thiết lập, SQL Server sẽ tự động đồng bộ dữ liệu giữa Publisher và Subscriber theo lịch trình
 
    Tạo Publications và Subscriptions 
-   
+
 3. Tải NetBean https://netbeans.apache.org/front/main/download/nb22/ tải file Apache-NetBeans-22-bin-windows-x64.exe
 4. Tải các phụ thuộc:
    Jdk 22: 	https://download.oracle.com/java/22/archive/jdk-22.0.2_windows-x64_bin.exe (sha256)
