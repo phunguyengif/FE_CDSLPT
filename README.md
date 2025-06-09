@@ -91,6 +91,7 @@ pom.xml
 
          Chọn các bảng hoặc đối tượng cần xuất bản:
       ![alt text](<Images/image1.png>)
+         
          Thiết lập các thuộc tính khác (như lịch trình đồng bộ).
 
       Tạo Snapshot:
@@ -109,6 +110,7 @@ pom.xml
 
          Chọn máy chủ Subscriber và cơ sở dữ liệu tương ứng: 
       ![alt text](Images/image.png).
+         
          Định cấu hình lịch trình đồng bộ (Continuous hoặc On-Demand).
 
 
